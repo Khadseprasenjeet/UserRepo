@@ -1,6 +1,7 @@
 package com.bitlogic.main.serviceImpl;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService{
 		user.setAadharCard(aadharCard.getBytes());
 		user.setPanCard(panCard.getBytes());
 		
-		 ur.save(user);
+		 ur.save(user); 
 		
 	} catch (JsonMappingException e) {
 		// TODO Auto-generated catch block
@@ -47,6 +48,13 @@ public class UserServiceImpl implements UserService{
 		e.printStackTrace();
 	}
 		
+	}
+
+	@Override
+	public List<User> getAllUser() {
+List<User> all = ur.findAll();
+		
+		return all;
 	}
 	
 	

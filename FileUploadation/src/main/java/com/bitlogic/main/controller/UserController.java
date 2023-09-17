@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -13,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bitlogic.main.model.User;
 import com.bitlogic.main.service.UserService;
-
+@CrossOrigin(origins = "*")
 @RestController
 public class UserController {
 	
@@ -37,6 +38,9 @@ public class UserController {
 	public ResponseEntity<List<User>>  exposeAllUser(){
 		
 	List<User> allUser=	us.getAllUser();
+	allUser.forEach(t -> {
+		System.out.println(t);
+	});
 		
 		return new ResponseEntity<List<User>>(allUser, HttpStatus.OK);
 	}
